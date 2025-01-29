@@ -21,7 +21,6 @@ cryptos = [
 def fetch_and_save_data():
     # Hago la conexion con Trading para hacer requests
     request = TradingViewData()
-    request.search('METAL')
     # Intervalo de 1 día
     interval = Interval.daily
     # 4 años
@@ -41,6 +40,9 @@ def fetch_and_save_data():
             # Convierto los datos a un DataFrame
             df = pd.DataFrame(data)
             df.index = pd.to_datetime(df.index)  # Establecer el índice como datetime (ya viene en ese formato)
+
+            # Eliminar la columna 'volume'
+            df = df.drop(columns=["volume"])
 
             # Guardar el DataFrame como un CSV en la carpeta 'crypto_data'
             folder_path = 'crypto_data'

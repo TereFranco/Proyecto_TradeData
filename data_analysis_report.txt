@@ -1,0 +1,420 @@
+Analisis de datos para AAVEUSD:
+-------------------------------------------------
+Estadisticas descriptivas:
+              open         high          low        close
+count  1460.000000  1460.000000  1460.000000  1460.000000
+mean    163.674606   171.669454   155.432774   163.649655
+std     117.143509   125.128371   109.220406   117.108029
+min      49.558081    51.552403    45.595383    49.474275
+25%      79.451982    82.237333    76.589806    79.453857
+50%     103.024528   107.210620    99.176521   103.024362
+75%     238.463448   252.366751   223.479196   238.348145
+max     628.869937   667.505212   563.222114   628.827731
+
+Tipos de datos:
+symbol     object
+open      float64
+high      float64
+low       float64
+close     float64
+dtype: object
+
+Conteo de valores nulos:
+symbol    0
+open      0
+high      0
+low       0
+close     0
+dtype: int64
+
+Numero de filas duplicadas: 0
+
+Correlaciones entre variables numericas:
+           open      high       low     close
+open   1.000000  0.995758  0.993418  0.992382
+high   0.995758  1.000000  0.992198  0.996118
+low    0.993418  0.992198  1.000000  0.995924
+close  0.992382  0.996118  0.995924  1.000000
+
+
+
+==================================================
+
+Analisis de datos para ADAUSD:
+-------------------------------------------------
+Estadisticas descriptivas:
+              open         high          low        close
+count  1460.000000  1460.000000  1460.000000  1460.000000
+mean      0.767909     0.798729     0.734510     0.768268
+std       0.569979     0.596644     0.540616     0.569872
+min       0.240982     0.245952     0.156000     0.241006
+25%       0.364663     0.373897     0.353950     0.364745
+50%       0.490324     0.510000     0.471350     0.490700
+75%       1.092437     1.148104     1.037881     1.092308
+max       2.968012     3.099809     2.903358     2.967889
+
+Tipos de datos:
+symbol     object
+open      float64
+high      float64
+low       float64
+close     float64
+dtype: object
+
+Conteo de valores nulos:
+symbol    0
+open      0
+high      0
+low       0
+close     0
+dtype: int64
+
+Numero de filas duplicadas: 21
+
+Correlaciones entre variables numericas:
+           open      high       low     close
+open   1.000000  0.997396  0.994855  0.995274
+high   0.997396  1.000000  0.993887  0.998163
+low    0.994855  0.993887  1.000000  0.995947
+close  0.995274  0.998163  0.995947  1.000000
+
+
+
+==================================================
+
+Analisis de datos para BTCUSD:
+-------------------------------------------------
+Estadisticas descriptivas:
+                open           high            low          close
+count    1460.000000    1460.000000    1460.000000    1460.000000
+mean    43879.356574   44869.655036   42842.744975   43927.053068
+std     20345.723179   20792.542482   19915.352800   20401.383927
+min     15760.500000   16268.740000   15479.420000   15760.800000
+25%     27270.350000   27801.712500   26816.300000   27270.445000
+50%     41141.570000   42232.655000   39783.295000   41198.930000
+75%     58249.865000   59632.562500   57034.111250   58302.035625
+max    106161.430000  109396.430000  105368.760000  106160.820000
+
+Tipos de datos:
+symbol     object
+open      float64
+high      float64
+low       float64
+close     float64
+dtype: object
+
+Conteo de valores nulos:
+symbol    0
+open      0
+high      0
+low       0
+close     0
+dtype: int64
+
+Numero de filas duplicadas: 0
+
+Correlaciones entre variables numericas:
+           open      high       low     close
+open   1.000000  0.998748  0.998119  0.997402
+high   0.998748  1.000000  0.997729  0.998897
+low    0.998119  0.997729  1.000000  0.998616
+close  0.997402  0.998897  0.998616  1.000000
+
+
+
+==================================================
+
+Analisis de datos para DOGEUSD:
+-------------------------------------------------
+Estadisticas descriptivas:
+              open         high          low        close
+count  1460.000000  1460.000000  1460.000000  1460.000000
+mean      0.141848     0.149028     0.134684     0.142046
+std       0.099371     0.107254     0.091039     0.099421
+min       0.027870     0.035070     0.026740     0.031510
+25%       0.072649     0.075071     0.070578     0.072715
+50%       0.100354     0.103842     0.096609     0.100380
+75%       0.171206     0.179840     0.163710     0.171656
+max       0.689410     0.739050     0.601000     0.688980
+
+Tipos de datos:
+symbol     object
+open      float64
+high      float64
+low       float64
+close     float64
+dtype: object
+
+Conteo de valores nulos:
+symbol    0
+open      0
+high      0
+low       0
+close     0
+dtype: int64
+
+Numero de filas duplicadas: 0
+
+Correlaciones entre variables numericas:
+           open      high       low     close
+open   1.000000  0.991750  0.989888  0.988637
+high   0.991750  1.000000  0.983978  0.995717
+low    0.989888  0.983978  1.000000  0.991698
+close  0.988637  0.995717  0.991698  1.000000
+
+
+
+==================================================
+
+Analisis de datos para DOTUSD:
+-------------------------------------------------
+Estadisticas descriptivas:
+              open         high          low        close
+count  1460.000000  1460.000000  1460.000000  1460.000000
+mean     13.031398    13.590158    12.386003    13.023351
+std      11.372385    11.968299    10.674772    11.372326
+min       3.646300     3.659800     3.575600     3.646300
+25%       5.501075     5.683173     5.339113     5.501225
+50%       7.109368     7.341550     6.856000     7.103968
+75%      18.270175    19.040775    17.584725    18.268925
+max      53.871000    55.081000    52.204000    53.892000
+
+Tipos de datos:
+symbol     object
+open      float64
+high      float64
+low       float64
+close     float64
+dtype: object
+
+Conteo de valores nulos:
+symbol    0
+open      0
+high      0
+low       0
+close     0
+dtype: int64
+
+Numero de filas duplicadas: 0
+
+Correlaciones entre variables numericas:
+           open      high       low     close
+open   1.000000  0.997928  0.995178  0.995055
+high   0.997928  1.000000  0.994881  0.997562
+low    0.995178  0.994881  1.000000  0.997320
+close  0.995055  0.997562  0.997320  1.000000
+
+
+
+==================================================
+
+Analisis de datos para ETHUSD:
+-------------------------------------------------
+Estadisticas descriptivas:
+              open         high          low        close
+count  1460.000000  1460.000000  1460.000000  1460.000000
+mean   2444.781705  2512.219993  2369.971370  2446.008567
+std     866.169762   890.625831   836.141528   865.813454
+min     994.110000  1077.200000   880.030000   994.810000
+25%    1726.087500  1780.958125  1668.310000  1726.715000
+50%    2305.455000  2374.385000  2233.210000  2309.335000
+75%    3159.501250  3253.162500  3059.383125  3159.888125
+max    4810.477500  4867.950000  4668.695000  4811.710000
+
+Tipos de datos:
+symbol     object
+open      float64
+high      float64
+low       float64
+close     float64
+dtype: object
+
+Conteo de valores nulos:
+symbol    0
+open      0
+high      0
+low       0
+close     0
+dtype: int64
+
+Numero de filas duplicadas: 0
+
+Correlaciones entre variables numericas:
+           open      high       low     close
+open   1.000000  0.997071  0.994174  0.992713
+high   0.997071  1.000000  0.993219  0.996606
+low    0.994174  0.993219  1.000000  0.996061
+close  0.992713  0.996606  0.996061  1.000000
+
+
+
+==================================================
+
+Analisis de datos para SHIBUSD:
+-------------------------------------------------
+Estadisticas descriptivas:
+               open          high           low         close
+count  1.460000e+03  1.460000e+03  1.460000e+03  1.460000e+03
+mean   1.492429e-05  1.561878e-05  1.425631e-05  1.493668e-05
+std    1.051295e-05  1.125212e-05  9.760100e-06  1.050604e-05
+min    4.602400e-09  6.080860e-09  4.138290e-09  5.382360e-09
+25%    8.279257e-06  8.496949e-06  8.072977e-06  8.286205e-06
+50%    1.111422e-05  1.151934e-05  1.080172e-05  1.111804e-05
+75%    2.151702e-05  2.221405e-05  2.046910e-05  2.151702e-05
+max    8.263774e-05  8.840996e-05  6.705136e-05  8.263774e-05
+
+Tipos de datos:
+symbol     object
+open      float64
+high      float64
+low       float64
+close     float64
+dtype: object
+
+Conteo de valores nulos:
+symbol    0
+open      0
+high      0
+low       0
+close     0
+dtype: int64
+
+Numero de filas duplicadas: 0
+
+Correlaciones entre variables numericas:
+           open      high       low     close
+open   1.000000  0.989155  0.993871  0.985296
+high   0.989155  1.000000  0.985080  0.995828
+low    0.993871  0.985080  1.000000  0.989521
+close  0.985296  0.995828  0.989521  1.000000
+
+
+
+==================================================
+
+Analisis de datos para SOLUSD:
+-------------------------------------------------
+Estadisticas descriptivas:
+              open         high          low        close
+count  1460.000000  1460.000000  1460.000000  1460.000000
+mean     84.951278    88.574997    81.373527    85.103601
+std      68.904209    71.494556    66.211702    68.972343
+min       4.237410     4.621951     4.104987     4.253354
+25%      24.060300    24.974175    23.058325    24.141325
+50%      48.404800    52.858547    44.953492    48.990400
+75%     143.925000   149.072500   139.165000   143.970000
+max     262.030000   295.110000   253.040000   262.030000
+
+Tipos de datos:
+symbol     object
+open      float64
+high      float64
+low       float64
+close     float64
+dtype: object
+
+Conteo de valores nulos:
+symbol    0
+open      0
+high      0
+low       0
+close     0
+dtype: int64
+
+Numero de filas duplicadas: 0
+
+Correlaciones entre variables numericas:
+           open      high       low     close
+open   1.000000  0.998362  0.997998  0.996836
+high   0.998362  1.000000  0.997381  0.998684
+low    0.997998  0.997381  1.000000  0.998153
+close  0.996836  0.998684  0.998153  1.000000
+
+
+
+==================================================
+
+Analisis de datos para XLMUSD:
+-------------------------------------------------
+Estadisticas descriptivas:
+              open         high          low        close
+count  1460.000000  1460.000000  1460.000000  1460.000000
+mean      0.193158     0.201022     0.184746     0.193191
+std       0.132350     0.141603     0.122983     0.132381
+min       0.070992     0.072370     0.070423     0.070975
+25%       0.102180     0.104515     0.099617     0.102190
+50%       0.121417     0.124492     0.118040     0.121412
+75%       0.267753     0.277614     0.258233     0.267856
+max       0.735991     0.797826     0.658977     0.735380
+
+Tipos de datos:
+symbol     object
+open      float64
+high      float64
+low       float64
+close     float64
+dtype: object
+
+Conteo de valores nulos:
+symbol    0
+open      0
+high      0
+low       0
+close     0
+dtype: int64
+
+Numero de filas duplicadas: 0
+
+Correlaciones entre variables numericas:
+           open      high       low     close
+open   1.000000  0.995821  0.993331  0.992693
+high   0.995821  1.000000  0.991931  0.996807
+low    0.993331  0.991931  1.000000  0.995599
+close  0.992693  0.996807  0.995599  1.000000
+
+
+
+==================================================
+
+Analisis de datos para XRPUSD:
+-------------------------------------------------
+Estadisticas descriptivas:
+              open         high          low        close
+count  1460.000000  1460.000000  1460.000000  1460.000000
+mean      0.705657     0.733493     0.676646     0.707415
+std       0.464307     0.491517     0.438802     0.468208
+min       0.305600     0.315900     0.291000     0.305400
+25%       0.469803     0.480992     0.455178     0.469917
+50%       0.552300     0.571805     0.537445     0.553100
+75%       0.762933     0.784623     0.731370     0.763355
+max       3.291100     3.399100     3.178000     3.291200
+
+Tipos de datos:
+symbol     object
+open      float64
+high      float64
+low       float64
+close     float64
+dtype: object
+
+Conteo de valores nulos:
+symbol    0
+open      0
+high      0
+low       0
+close     0
+dtype: int64
+
+Numero de filas duplicadas: 0
+
+Correlaciones entre variables numericas:
+           open      high       low     close
+open   1.000000  0.996055  0.995187  0.993575
+high   0.996055  1.000000  0.992651  0.997136
+low    0.995187  0.992651  1.000000  0.995677
+close  0.993575  0.997136  0.995677  1.000000
+
+
+
+==================================================
+
