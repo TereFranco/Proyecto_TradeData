@@ -43,7 +43,6 @@ pip install pandas websocket-client TradingviewData
 │── crypto_data/              # Archivos CSV con los datos históricos  
 
 │── crypto_visual/            # Imágenes para la visualización de cada moneda
-
 │   ├── AAVEUSD.csv           # Datos históricos de AAVE/USD  
 │   ├── ADAUSD.csv            # Datos históricos de ADA/USD  
 │   ├── BTCUSD.csv            # Datos históricos de BTC/USD  
@@ -61,7 +60,7 @@ pip install pandas websocket-client TradingviewData
 │   ├── Historias Usuario.pdf     # Historias de usuario  
 │   ├── Proyecto Tecnologías Processament...  # Documentación técnica  
 
-│── preprocessed_data         # Datos preprocesados sin nulos, duplicados... y separados anualmente
+│── preprocessed_data/        # Datos preprocesados sin nulos, duplicados... y separados anualmente
 
 │── TradingviewData/          # Librería para acceder a TradingView  
 
