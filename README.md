@@ -1,78 +1,44 @@
+# 📈 Crypto Data Extractor  
 
-# TradingView Data For any Indexes and Stocks
+Este proyecto permite obtener datos históricos de 10 criptomonedas utilizando la API de **TradingView**. Se recopilan datos con una frecuencia de **1 día** durante los últimos **4 años** y se almacenan en formato CSV.
 
-A Simple TradingView Data Downloader. TradinViewData allows downloading upto 5000 Candles on any of the supported timeframe.
+## Historia de Usuario  
 
-    
-# Usage
+**Como:** Manager del proyecto  
+**Quiero:**  
+- Que las consultoras conozcan el proyecto.  
+- Que comprendan el uso de **TradingView** para extraer datos históricos.  
+- Que sepan cómo obtener datos de 10 criptomonedas.  
 
-```Python
-from TradingviewData import TradingViewData,Interval
+**Para:**  
+- Garantizar un buen inicio del proyecto con acceso a datos históricos de calidad.
 
-request = TradingViewData()
-```
+## Criptomonedas Incluidas  
 
+| Nombre       | Símbolo  |
+|-------------|---------|
+| Bitcoin     | BTC     |
+| Ethereum    | ETH     |
+| Ripple      | XRP     |
+| Solana      | SOL     |
+| Dogecoin    | DOGE    |
+| Cardano     | ADA     |
+| Shiba Inu   | SHIB    |
+| Polkadot    | DOT     |
+| Aave        | AAVE    |
+| Stellar     | XLM     | 
 
-# Get Symbol
+## Instalación y Uso  
 
+### Requisitos  
 
-To find the exact symbols for an instrument you can use ``` request.search_symbol ``` method.
+Asegúrate de tener **Python 3.8+** y las siguientes librerías instaladas:  
+```sh
+pip install pandas websocket-client TradingviewData
 
-```Python
-
-request.search('METAL','MCX')
-```
-
-Other method is check Manually via [Tradingview Search]("https://www.tradingview.com/markets/indices/").
-
-
-# Getting Data
-
-
-## Index
-
-```Python
-nifty_data = request.get_hist(symbol='NIFTY',exchange='NSE',interval=Interval.hour_1,n_bars=1000)
-```
-## Futures continuous contract
-
-```Python
-nifty_futures = request.get_hist(symbol='NIFTY',exchange='NSE',interval=Interval.hour_1,n_bars=1000,fut_contract=1)
-```
-
-## Stocks
-
-```Python
-relience_data = request.get_hist(symbol='RELIANCE',exchange='NSE',interval=Interval.min_5,n_bars=5000)
-```
-
-## MCX
-
-```Python
-crudeoil_data = request.get_hist(symbol='CRUDEOIL',exchange='MCX',interval=Interval.hour_1,n_bars=5000)
-```
-
-## Downloading data for extended market hours
-
-
-```Python
-extended_data = request.get_hist(symbol="EICHERMOT",exchange="NSE",interval=Interval.hour_1,n_bars=500, extended_session=False)
-```
-
-
-## Supported Time Frames
-
-
-#####  1 Minute = min_1
-#####  3 Minute = min_3
-#####  5 Minute = min_5
-#####  15 Minute = min_15
-#####  30 Minute = min_30
-#####  45 Minute = min_45
-#####  1 Hour = hour_1
-#####  2 Hour = hour_2
-#####  3 Hour = hour_3
-#####  4 Hour = hour_4
-#####  1 Day = daily
-#####  1 Week = weekly
-#####  1 Month = monthy
+### Estructura del Repositorio
+/Crypto-Data-Extractor
+│── crypto_data/              # Archivos CSV con los datos históricos  
+│── TradingviewData/          # Librería para acceder a TradingView  
+│── DataExtractor.py          # Script principal  
+│── README.md                 # Este archivo  
