@@ -11,8 +11,8 @@ def preprocess_and_split_by_sets_of_years(csv_folder):
     files = [f for f in os.listdir(csv_folder) if f.endswith(".csv")]
     
     for file in files:
-        # Obtener el nombre de la criptomoneda (ej. BTCUSD)
-        crypto_name = file.split("_")[0]  
+        # Obtener el nombre de la criptomoneda (ej. BTCUSD) y eliminar "USD"
+        crypto_name = file.split(".")[0].replace("USD_daily_data", "")  # Eliminar "USD" del nombre
         file_path = os.path.join(csv_folder, file)
 
         # Cargar los datos
@@ -28,30 +28,33 @@ def preprocess_and_split_by_sets_of_years(csv_folder):
         if not os.path.exists(crypto_folder):
             os.makedirs(crypto_folder)
 
-        # Crear intervalos de 1 año (enero - enero)
+        # Crear intervalos de 1 año (enero - diciembre)
         start_year = df.index.year.min()  # Año inicial (primer año en los datos)
         end_year = df.index.year.max()   # Año final (último año en los datos)
 
         # Iterar a través de los intervalos año a año
-        for year in range(start_year, end_year):
-            # Definir el inicio y el final del intervalo (enero a enero)
+        for year in range(start_year, end_year + 1):
+            # Definir el inicio y el final del intervalo (enero a diciembre)
             start_date = pd.Timestamp(f"{year}-01-31")
-            end_date = pd.Timestamp(f"{year+1}-01-30")
+            end_date = pd.Timestamp(f"{year+1}-1-30")
 
-            # Filtrar los datos para el intervalo actual (enero - enero)
-            year_data = df[(df.index >= start_date) & (df.index < end_date)]
+            # Filtrar los datos para el intervalo actual (enero - diciembre)
+            year_data = df[(df.index >= start_date) & (df.index <= end_date)]
 
             # Verificar si hay datos en el intervalo
             if not year_data.empty:
-                # Definir el nombre del archivo CSV para este intervalo
-                csv_filename = f"{crypto_name}_{start_date.strftime('%Y%m%d')}_{end_date.strftime('%Y%m%d')}_data.csv"
-                csv_filepath = os.path.join(crypto_folder, csv_filename)
+                # Crear una carpeta para el año si no existe
+                year_folder = os.path.join(crypto_folder, str(year)+"-"+str(year+1))
+                if not os.path.exists(year_folder):
+                    os.makedirs(year_folder)
 
-                # Guardar los datos filtrados para este intervalo
+                # Definir el nombre del archivo CSV para este año
+                csv_filename = f"{crypto_name}_{year}_data.csv"
+                csv_filepath = os.path.join(year_folder, csv_filename)
+
+                # Guardar los datos filtrados para este año
                 year_data.to_csv(csv_filepath)
-                print(f"Datos de {crypto_name} para el intervalo {start_date.strftime('%Y-%m-%d')} - {end_date.strftime('%Y-%m-%d')} guardados en {csv_filepath}")
-            else:
-                print(f"No hay datos para el intervalo {start_date.strftime('%Y-%m-%d')} - {end_date.strftime('%Y-%m-%d')} para {crypto_name}")
+                print(f"Datos de {crypto_name} para el año {year} guardados en {csv_filepath}")
 
 if __name__ == "__main__":
     # Carpeta donde se encuentran los archivos CSV originales
