@@ -39,6 +39,7 @@ pip install pandas websocket-client TradingviewData
 
 ### Estructura del Repositorio
 /Crypto-Data-Extractor
+
 │── crypto_data/              # Archivos CSV con los datos históricos  
 
 │── crypto_visual/            # Imágenes para la visualización de cada moneda
