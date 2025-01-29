@@ -54,9 +54,9 @@ pip install pandas websocket-client TradingviewData
 │   └── XRPUSD.csv            # Datos históricos de XRP/USD  
 
 │── docs/                     # Docuentación de la práctica
-|   │── Documentation Proyecto.docx  # Documentación del proyecto  
-|   │── Historias Usuario.pdf     # Historias de usuario  
-|   │── Proyecto Tecnologías Processament...  # Documentación técnica  
+│   ├── Documentation Proyecto.docx  # Documentación del proyecto  
+│   ├── Historias Usuario.pdf     # Historias de usuario  
+│   ├── Proyecto Tecnologías Processament...  # Documentación técnica  
 
 │── preprocessed_data         # Datos preprocesados sin nulos, duplicados... y separados anualmente
 
