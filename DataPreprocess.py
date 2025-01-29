@@ -1,43 +1,59 @@
 import os
 import pandas as pd
 
-def analyze_data(csv_folder):
+def preprocess_and_split_by_sets_of_years(csv_folder):
+    # Crear una carpeta "preprocessed_data" si no existe
+    output_folder = "preprocessed_data"
+    if not os.path.exists(output_folder):
+        os.makedirs(output_folder)
+
+    # Listar todos los archivos CSV en la carpeta dada
     files = [f for f in os.listdir(csv_folder) if f.endswith(".csv")]
     
-    # Crear un archivo de reporte
-    with open("data_analysis_report.txt", "w") as report:
-        for file in files:
-            crypto_name = file.split("_")[0]  # Obtener el nombre del activo
-            file_path = os.path.join(csv_folder, file)
-            df = pd.read_csv(file_path, parse_dates=["datetime"], index_col="datetime")
-            
-            # Información general del DataFrame
-            report.write(f"Analisis de datos para {crypto_name}:\n")
-            report.write(f"-------------------------------------------------\n")
-            
-            # Resumen de estadísticas descriptivas
-            report.write(f"Estadisticas descriptivas:\n{df.describe()}\n\n")
-            
-            # Resumen de los tipos de datos
-            report.write(f"Tipos de datos:\n{df.dtypes}\n\n")
-            
-            # Conteo de valores nulos por columna
-            report.write(f"Conteo de valores nulos:\n{df.isnull().sum()}\n\n")
-            
-            # Verificar la existencia de duplicados
-            duplicated_rows = df[df.duplicated()]
-            report.write(f"Numero de filas duplicadas: {len(duplicated_rows)}\n\n")
-            
-            # Correlación entre variables numéricas (excluir columnas no numéricas)
-            numeric_df = df.select_dtypes(include=['number'])  # Seleccionar solo columnas numéricas
-            if not numeric_df.empty:
-                corr_matrix = numeric_df.corr()
-                report.write(f"Correlaciones entre variables numericas:\n{corr_matrix}\n\n")
+    for file in files:
+        # Obtener el nombre de la criptomoneda (ej. BTCUSD)
+        crypto_name = file.split("_")[0]  
+        file_path = os.path.join(csv_folder, file)
+
+        # Cargar los datos
+        print(f"Procesando datos de {crypto_name}...")
+        df = pd.read_csv(file_path, parse_dates=["datetime"], index_col="datetime")
+        
+        # Preprocesar los datos: eliminar valores nulos y duplicados
+        df = df.dropna()  # Eliminar filas con valores nulos
+        df = df.drop_duplicates()  # Eliminar filas duplicadas
+
+        # Crear una subcarpeta para cada criptomoneda si no existe
+        crypto_folder = os.path.join(output_folder, crypto_name)
+        if not os.path.exists(crypto_folder):
+            os.makedirs(crypto_folder)
+
+        # Crear intervalos de 1 año (enero - enero)
+        start_year = df.index.year.min()  # Año inicial (primer año en los datos)
+        end_year = df.index.year.max()   # Año final (último año en los datos)
+
+        # Iterar a través de los intervalos año a año
+        for year in range(start_year, end_year):
+            # Definir el inicio y el final del intervalo (enero a enero)
+            start_date = pd.Timestamp(f"{year}-01-31")
+            end_date = pd.Timestamp(f"{year+1}-01-30")
+
+            # Filtrar los datos para el intervalo actual (enero - enero)
+            year_data = df[(df.index >= start_date) & (df.index < end_date)]
+
+            # Verificar si hay datos en el intervalo
+            if not year_data.empty:
+                # Definir el nombre del archivo CSV para este intervalo
+                csv_filename = f"{crypto_name}_{start_date.strftime('%Y%m%d')}_{end_date.strftime('%Y%m%d')}_data.csv"
+                csv_filepath = os.path.join(crypto_folder, csv_filename)
+
+                # Guardar los datos filtrados para este intervalo
+                year_data.to_csv(csv_filepath)
+                print(f"Datos de {crypto_name} para el intervalo {start_date.strftime('%Y-%m-%d')} - {end_date.strftime('%Y-%m-%d')} guardados en {csv_filepath}")
             else:
-                report.write("No hay columnas numéricas para calcular correlaciones.\n\n")
-            
-            # Espacio vacío entre criptomonedas
-            report.write(f"\n\n{'='*50}\n\n")
+                print(f"No hay datos para el intervalo {start_date.strftime('%Y-%m-%d')} - {end_date.strftime('%Y-%m-%d')} para {crypto_name}")
 
 if __name__ == "__main__":
-    analyze_data("crypto_data")
+    # Carpeta donde se encuentran los archivos CSV originales
+    csv_folder = "crypto_data"  # Cambia este valor según tu carpeta de entrada
+    preprocess_and_split_by_sets_of_years(csv_folder)
