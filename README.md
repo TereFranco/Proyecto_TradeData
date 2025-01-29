@@ -35,6 +35,7 @@ Este proyecto permite obtener datos históricos de 10 criptomonedas utilizando l
 Asegúrate de tener **Python 3.8+** y las siguientes librerías instaladas:  
 ```sh
 pip install pandas websocket-client TradingviewData
+```
 
 ### Estructura del Repositorio
 /Crypto-Data-Extractor
