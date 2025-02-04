@@ -1,0 +1,15 @@
+Conexión SSH a la instancia:
+ssh -i "C:\Users\ulise\Downloads\CryptoKey.pem" ec2-user@18.101.194.34
+
+Envio archivos por SCP:
+scp -i "C:\Users\ulise\Downloads\CryptoKey.pem" DataExtractor.py ec2-user@18.101.194.34:~/
+
+Creamos y eviamos un .py que nos permita crear un bucket y meter los .csv que tenemos:
+scp -i "C:\Users\ulise\Downloads\CryptoKey.pem" S3DataUpload.py ec2-user@18.101.194.34:~/
+
+En AWS, tenemos que modificar los roles de la instancia EC2 para permitirle crear el bucket, porque por el momento, la instancia no tiene estos permisos. Para ello creamos un nuevo rol en IAM que sea del tipo entidad de confianza y seleccionamos EC2 que es el que queremos. En los permisos, le asignamos AMAZONS3FullAccess para darle permisos completos para interactuar con S3, si solo le diésemos permisos de lectura, no podría crear el bucket ni meter los datos. Le ponemos un nombre: EC2-S3-Role. 
+Ahora, le asociamos este rol a la instancia EC2 al darle en Modificar roles de IAM, seleccionando este rol que hemos creado y aplicamos los cambios.
+Ejecutamos el comando:
+python3 S3DataUpload.py
+
+Y verificamos que efectivamente se ha creado el bucket con los datos dentro.
