@@ -35,8 +35,8 @@ def preprocess_and_split_by_sets_of_years(csv_folder):
         # Iterar a través de los intervalos año a año
         for year in range(start_year, end_year + 1):
             # Definir el inicio y el final del intervalo (enero a diciembre)
-            start_date = pd.Timestamp(f"{year}-01-31")
-            end_date = pd.Timestamp(f"{year+1}-1-30")
+            start_date = pd.Timestamp(f"{year}-02-06")
+            end_date = pd.Timestamp(f"{year+1}-02-05")
 
             # Filtrar los datos para el intervalo actual (enero - diciembre)
             year_data = df[(df.index >= start_date) & (df.index <= end_date)]
