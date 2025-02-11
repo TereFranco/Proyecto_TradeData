@@ -35,22 +35,17 @@ def preprocess_and_split_by_sets_of_years(csv_folder):
         # Iterar a través de los intervalos año a año
         for year in range(start_year, end_year + 1):
             # Definir el inicio y el final del intervalo (enero a diciembre)
-            start_date = pd.Timestamp(f"{year}-02-06")
-            end_date = pd.Timestamp(f"{year+1}-02-05")
+            start_date = pd.Timestamp(f"{year}-02-13")
+            end_date = pd.Timestamp(f"{year+1}-02-12")
 
             # Filtrar los datos para el intervalo actual (enero - diciembre)
             year_data = df[(df.index >= start_date) & (df.index <= end_date)]
 
             # Verificar si hay datos en el intervalo
             if not year_data.empty:
-                # Crear una carpeta para el año si no existe
-                year_folder = os.path.join(crypto_folder, str(year)+"-"+str(year+1))
-                if not os.path.exists(year_folder):
-                    os.makedirs(year_folder)
-
                 # Definir el nombre del archivo CSV para este año
-                csv_filename = f"{crypto_name}_{year}_data.csv"
-                csv_filepath = os.path.join(year_folder, csv_filename)
+                csv_filename = f"{crypto_name}_{year}.csv"
+                csv_filepath = os.path.join(crypto_folder, csv_filename)
 
                 # Guardar los datos filtrados para este año
                 year_data.to_csv(csv_filepath)

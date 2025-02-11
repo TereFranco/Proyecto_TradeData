@@ -3,9 +3,11 @@ import boto3
 # Configuración AWS
 aws_region = "eu-south-2"  # Cambia según tu región
 database_name = "trade_data_imat3a08"  # Nombre de la base de datos en Glue
-crawler_name = "crypto_trade_data_crawler"  # Nombre del Crawler
-s3_target_path = "s3://crypto-data-18b6b3f4/"  # Ruta S3 donde están los CSV
-role_arn = "arn:aws:iam::043309335245:role/service-role/AWSGlueServiceRole-workshop"  # Cambia esto por tu ARN de IAM Role
+role_arn = "arn:aws:iam::043309335245:role/service-role/AWSGlueServiceRole-workshop"  # ARN de IAM Role
+bucket_name = "crypto-data-4e822955"  # Nombre del bucket de S3
+
+# Lista de criptomonedas a procesar
+cryptos = ["AAVE", "ADA", "BTC", "DOGE", "DOT", "ETH", "SHIB", "SOL", "XLM", "XRP"]  # Agrega más si es necesario
 
 # Inicializar el cliente de AWS Glue
 glue_client = boto3.client("glue", region_name=aws_region)
@@ -20,35 +22,48 @@ def create_database():
     except glue_client.exceptions.AlreadyExistsException:
         print(f"La base de datos '{database_name}' ya existe.")
 
-def create_crawler():
-    """Crea el AWS Glue Crawler para leer los archivos CSV organizados en S3."""
-    try:
-        glue_client.create_crawler(
-            Name=crawler_name,
-            Role=role_arn,
-            DatabaseName=database_name,
-            Targets={"S3Targets": [{"Path": s3_target_path}]},
-            TablePrefix="trade_data_",  # Prefijo para las tablas
-            Description="Crawler para datos de criptomonedas organizados por año",
-            Schedule="cron(0 12 * * ? *)",  # Corre diariamente a las 12 PM (opcional)
-            SchemaChangePolicy={"UpdateBehavior": "UPDATE_IN_DATABASE", "DeleteBehavior": "LOG"},
-            Configuration='{"Version":1.0,"Grouping":{"TableLevelConfiguration":3}}'
-        )
-        print(f"Crawler '{crawler_name}' creado exitosamente.")
-    except glue_client.exceptions.AlreadyExistsException:
-        print(f"El Crawler '{crawler_name}' ya existe.")
+def create_crawlers():
+    """Crea un único Crawler por cada criptomoneda apuntando a la carpeta correcta en S3."""
+    existing_crawlers = glue_client.get_crawlers()["Crawlers"]  # Obtener lista de crawlers existentes
+    existing_crawler_names = {crawler["Name"] for crawler in existing_crawlers}  # Guardar nombres de crawlers existentes
 
-def start_crawler():
-    """Ejecuta el crawler para actualizar los metadatos en el catálogo."""
-    try:
-        glue_client.start_crawler(Name=crawler_name)
-        print(f"Crawler '{crawler_name}' iniciado.")
-    except Exception as e:
-        print(f"Error al iniciar el crawler: {e}")
+    for crypto in cryptos:
+        crawler_name = f"crawler_{crypto}"
+        s3_target_path = f"s3://{bucket_name}/{crypto}/"  # Carpeta donde están los CSV preprocesados
+        
+        if crawler_name in existing_crawler_names:
+            print(f"El Crawler '{crawler_name}' ya existe, saltando creación.")
+            continue
+
+        try:
+            glue_client.create_crawler(
+                Name=crawler_name,
+                Role=role_arn,
+                DatabaseName=database_name,
+                Targets={"S3Targets": [{"Path": s3_target_path}]},
+                TablePrefix=f"trade_data_",  # Prefijo actualizado para incluir "trade_data_"
+                Description=f"Crawler para datos preprocesados de {crypto}",
+                Schedule="cron(0 12 * * ? *)",  # Corre diariamente a las 12 PM
+                SchemaChangePolicy={"UpdateBehavior": "UPDATE_IN_DATABASE", "DeleteBehavior": "LOG"},
+                Configuration='{"Version":1.0,"Grouping":{"TableLevelConfiguration":3}}'
+            )
+            print(f"Crawler '{crawler_name}' creado exitosamente para {crypto}.")
+        except Exception as e:
+            print(f"Error al crear el crawler '{crawler_name}': {e}")
+
+def start_crawlers():
+    """Ejecuta cada uno de los crawlers creados."""
+    for crypto in cryptos:
+        crawler_name = f"crawler_{crypto}"
+        try:
+            glue_client.start_crawler(Name=crawler_name)
+            print(f"Crawler '{crawler_name}' iniciado para {crypto}.")
+        except Exception as e:
+            print(f"Error al iniciar el crawler '{crawler_name}': {e}")
 
 # Ejecutar funciones
 if __name__ == "__main__":
     create_database()
-    create_crawler()
-    start_crawler()
+    create_crawlers()
+    start_crawlers()
 
